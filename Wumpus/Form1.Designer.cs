@@ -29,13 +29,36 @@ namespace Wumpus
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.tablero = new System.Windows.Forms.Panel();
+            this.SuspendLayout();
+            // 
+            // tablero
+            // 
+            this.tablero.BackColor = System.Drawing.Color.Gray;
+            this.tablero.Location = new System.Drawing.Point(10, 10);
+            this.tablero.Name = "tablero";
+            this.tablero.Size = new System.Drawing.Size(565, 522);
+            this.tablero.TabIndex = 0;
+            // 
+            // Form1
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            this.ClientSize = new System.Drawing.Size(798, 553);
+            this.Controls.Add(this.tablero);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MinimizeBox = false;
+            this.Name = "Form1";
+            this.ShowIcon = false;
+            this.Text = "Wumpus";
+            this.Load += new System.EventHandler(this.Form1_Load);
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.Panel tablero;
     }
 }
 

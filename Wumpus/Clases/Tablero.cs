@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Wumpus.Clases
 {
-    class Mapa {
+    class Tablero {
         public Casilla[,] mapa { get; set; }
         public int tamano { get; set; }
         private static Random random    ;
-        public Mapa (int tamano) {
+        public Tablero (int tamano) {
             this.tamano = tamano;
             this.mapa = new Casilla[tamano, tamano];
             random = new Random();
@@ -58,19 +58,23 @@ namespace Wumpus.Clases
         private void ponerEnMapa (int i,int j, string contenido) {
             if(i - 1 >= 0)
             {
-                mapa[i-1, j].contenido.Add(contenido);
+                if(!mapa[i - 1, j].contenido.Contains(contenido))
+                    mapa[i - 1, j].contenido.Add(contenido);
             }
             if(i+1 < tamano)
             {
-                mapa[i + 1, j].contenido.Add(contenido);
+                if (!mapa[i + 1, j].contenido.Contains(contenido))
+                    mapa[i + 1, j].contenido.Add(contenido);
             }
             if (j - 1 >= 0)
             {
-                mapa[i,j - 1].contenido.Add(contenido);
+                if (!mapa[i, j - 1].contenido.Contains(contenido))
+                    mapa[i, j - 1].contenido.Add(contenido);
             }
             if (j + 1 < tamano)
             {
-                mapa[i,j + 1].contenido.Add(contenido);
+                if (!mapa[i, j + 1].contenido.Contains(contenido))
+                    mapa[i,j + 1].contenido.Add(contenido);
             }
 
         }

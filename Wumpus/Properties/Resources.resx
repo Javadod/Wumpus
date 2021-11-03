@@ -46,7 +46,7 @@
     
     mimetype: application/x-microsoft.net.object.binary.base64
     value   : The object must be serialized with 
-            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
     
     mimetype: application/x-microsoft.net.object.soap.base64
@@ -60,6 +60,7 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
@@ -68,9 +69,10 @@
               <xsd:sequence>
                 <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="name" use="required" type="xsd:string" />
               <xsd:attribute name="type" type="xsd:string" />
               <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
@@ -85,9 +87,10 @@
                 <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
                 <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
               <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
               <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
@@ -109,9 +112,112 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="hoyo+hedor" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\hoyo+hedor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="hoyo+brillo+brisa" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\hoyo+brillo+brisa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="hoyo+brisa" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\hoyo+brisa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wumpus" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wumpus.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="brillo+hedor" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\brillo+hedor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wumpus+oro+hoyo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wumpus+oro+hoyo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wumpus+brisa" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wumpus+brisa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wumpus+hoyo+oro+brisa" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wumpus+hoyo+oro+brisa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wumpus+hoyo+brillo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wumpus+hoyo+brillo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wumpus+hoyo+brillo+brisa" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wumpus+hoyo+brillo+brisa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="hoyo+oro+brisa+hedor" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\hoyo+oro+brisa+hedor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="brillo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\brillo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wumpus+brillo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wumpus+brillo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="hoyo+brillo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\hoyo+brillo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wumpus+oro" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wumpus+oro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="brisa+hedor" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\brisa+hedor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="brillo+brisa+hedor" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\brillo+brisa+hedor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="hoyo+oro" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\hoyo+oro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="hoyo+oro+hedor" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\hoyo+oro+hedor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="hoyo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\hoyo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="hoyo+brisa+hedor" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\hoyo+brisa+hedor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wumpus+oro+brisa" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wumpus+oro+brisa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="hoyo+wumpus" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\hoyo+wumpus.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="oro" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\oro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wumpus+brisa+brillo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wumpus+brisa+brillo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="oro+hedor" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\oro+hedor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="oro+brisa" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\oro+brisa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="hedor" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\hedor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="oro+brisa+hedor" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\oro+brisa+hedor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="brillo+brisa" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\brillo+brisa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="hoyo+oro+brisa" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\hoyo+oro+brisa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="brisa" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\brisa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="hoyo+brillo+brisa+hedor" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\hoyo+brillo+brisa+hedor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wumpus+hoyo+brisa" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wumpus+hoyo+brisa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

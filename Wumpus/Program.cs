@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Wumpus.Clases;
 
 namespace Wumpus
 {
@@ -16,8 +17,6 @@ namespace Wumpus
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Mapa mapa = new Mapa(4);
-            Console.WriteLine(mapa.mapa);
             Application.Run(new Form1());
         }
     }

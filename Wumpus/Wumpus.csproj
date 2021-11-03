@@ -62,7 +62,7 @@
   <ItemGroup>
     <Compile Include="Clases\Casilla.cs" />
     <Compile Include="Extensiones.cs" />
-    <Compile Include="Clases\Mapa.cs" />
+    <Compile Include="Clases\Tablero.cs" />
     <Compile Include="Clases\Jugador.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -72,6 +72,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -80,6 +83,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -100,6 +104,108 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\brillo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\brisa.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hedor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hoyo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\oro.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wumpus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hoyo+brillo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hoyo+brillo+brisa.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hoyo+brillo+brisa+hedor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hoyo+brisa.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hoyo+brisa+hedor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hoyo+hedor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hoyo+oro.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hoyo+oro+brisa.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hoyo+oro+brisa+hedor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hoyo+oro+hedor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hoyo+wumpus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\oro+brisa.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\oro+brisa+hedor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\oro+hedor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wumpus+brisa.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wumpus+brisa+brillo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wumpus+hoyo+brillo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wumpus+hoyo+brillo+brisa.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wumpus+hoyo+oro+brisa.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wumpus+oro.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wumpus+oro+hoyo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wumpus+brillo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\brillo+hedor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\brillo+brisa.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\brillo+brisa+hedor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\brisa+hedor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wumpus+oro+brisa.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wumpus+hoyo+brisa.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
