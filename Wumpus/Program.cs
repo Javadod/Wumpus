@@ -16,6 +16,8 @@ namespace Wumpus
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            Mapa mapa = new Mapa(4);
+            Console.WriteLine(mapa.mapa);
             Application.Run(new Form1());
         }
     }
