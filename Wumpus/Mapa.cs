@@ -8,18 +8,20 @@ namespace Wumpus
 {
     class Mapa {
         private int tamano;
-        private String[,] mapa;
+        private string[,] mapa;
+        public string[,] MapaWumpus { get => mapa; set => mapa = value; }
         public Mapa (int tamano) {
             this.tamano = tamano;
             crearMapa();
+            Console.WriteLine("sda");
         }
         private void crearMapa () {
-            if (tamano <= 2) return;
-            mapa = new String[tamano, tamano];
+            if (tamano >= 2) return;
+            mapa = new string[tamano, tamano];
             vaciarMapa();
             crearHoyos();
             crearWumpus();
-            ponerLingote();
+            // ponerLingote();
         }
         private void vaciarMapa() {
             for (int i = 0; i < tamano; i++)
@@ -55,7 +57,7 @@ namespace Wumpus
             mapa[ranX, ranY] = mapa[ranX, ranY] + "4";
             crearHedor();
         }
-        private void ponerEnMapa (String principal, String adyacente) {
+        private void ponerEnMapa (string principal, string adyacente) {
             for (int i = 0; i < tamano; i++) {
                 for (int j = 0; j < tamano; j++) {
                     if (mapa[i, j] == principal) {
@@ -77,8 +79,18 @@ namespace Wumpus
             while (lingote) {
                 int ranX = random.Next(min, tamano - 1);
                 int ranY = random.Next(min, tamano - 1);
-                if (!(mapa[ranX, ranY].En("2")) && (!ranX.En(0, 1) || !ranY.En(0, 1)) )
+                if (!("2".En(mapa[ranX, ranY].Split()) && (!ranX.En(0, 1) || !ranY.En(0, 1))) {
                     mapa[ranX, ranY] = mapa[ranX, ranY] + "6";
+                    lingote = false;
+                }
+            }
+        }
+        public void imprimirMapa () {
+            for (int i = 0; i < tamano; i++) {
+                for (int j = 0; j < tamano; j++) {
+                    Console.Write($"{mapa[i, j]}    ");
+                }
+                Console.WriteLine();
             }
         }
     }

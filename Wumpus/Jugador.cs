@@ -7,14 +7,17 @@ using System.Threading.Tasks;
 namespace Wumpus
 {
     class Jugador {
-        private bool flecha { get; set; }
-        private int puntaje { get; set; }
+        private bool flecha;
+        private int puntaje;
         public Jugador () {
             this.flecha = true;
             this.puntaje = 0;
         }
+        public bool Flecha { get => flecha; set => flecha = value; }
+        public int Puntaje { get => puntaje; set => puntaje = value; }
         public void lanzarFlecha () {
             this.flecha = false;
+            puntaje -= 10;
         }
     }
 }

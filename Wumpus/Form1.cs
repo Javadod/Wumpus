@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
 
 namespace Wumpus
 {
@@ -16,5 +17,13 @@ namespace Wumpus
         {
             InitializeComponent();
         }
+
+        private void Form1_Load(object sender, EventArgs e) {
+            AllocConsole();
+            Mapa mapa = new Mapa(3);
+        }
+        [DllImport("kernel32.dll", SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        static extern bool AllocConsole();
     }
 }
