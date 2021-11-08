@@ -10,12 +10,12 @@ namespace Wumpus.Clases
     {
         public int columna { get; set; }
         public int fila { get; set; }
-        public List<string> contenido;
+        public List<string> contenido { get; set; }
 
-        public Casilla(int columna, int fila)
+        public Casilla(int fila, int columna)
         {
-            this.columna = columna;
             this.fila = fila;
+            this.columna = columna;
             this.contenido = new List<string>();
         }
         

@@ -61,6 +61,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Clases\Casilla.cs" />
+    <Compile Include="Clases\Movimiento.cs" />
+    <Compile Include="Clases\Recorrido.cs" />
+    <Compile Include="Clases\Sentidos.cs" />
     <Compile Include="Extensiones.cs" />
     <Compile Include="Clases\Tablero.cs" />
     <Compile Include="Clases\Jugador.cs" />
@@ -206,6 +209,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\wumpus+hoyo+brisa.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\5680d58ebafdf15.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

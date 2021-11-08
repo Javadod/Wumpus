@@ -17,12 +17,15 @@ namespace Wumpus.Clases
             random = new Random();
             setStart();
         }
-        private void setStart () {
+        private void setCasillas()
+        {
             if (tamano <= 2) return;
-
             for (int i = 0; i < tamano; i++)
                 for (int j = 0; j < tamano; j++)
-                    mapa[i, j] = new Casilla(i,j);
+                    mapa[i, j] = new Casilla(i, j);
+        }
+        private void setStart () {
+            setCasillas();
 
             setHoles();
             setWumpus();
