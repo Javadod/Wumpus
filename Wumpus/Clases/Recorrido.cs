@@ -47,7 +47,7 @@ namespace Wumpus.Clases
                 actual = actual.movimientoSiguiente;
             }
             
-            Casilla ultimaPosicion = new Casilla(anterior.posicionActual.fila,anterior.posicionActual.columna);
+            Casilla ultimaPosicion = new Casilla(actual.posicionActual.fila,actual.posicionActual.columna);
             actual.jugador.posicionActual = ultimaPosicion;
             anterior.posicionActual = ultimaPosicion;
             anterior.movimientoSiguiente = null;

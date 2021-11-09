@@ -234,7 +234,15 @@ namespace Wumpus
                 movimientos.retrocede();
             else
                 movimientos.nuevoMovimiento(mejorMovimiento);
-            jugador.estadoActual();
+            int estado=jugador.estadoActual();
+            if (estado == -1)
+            {
+                //murio
+            }
+            else if(estado == 1)
+            {
+                //gano
+            }
             moverJugador(jugador.posicionActual);
         }
 
