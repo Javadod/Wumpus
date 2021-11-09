@@ -38,6 +38,33 @@ namespace Wumpus.Clases
         {
             int filaActual = posicionActual.fila;
             int columnaActual = posicionActual.columna;
+            if (posicionActual.contenido.Contains("vacio"))
+            {
+                if (filaActual - 1 >= 0)
+                {
+                    baseConocimiento[filaActual - 1, columnaActual].contenido.Remove("posible hoyo");
+                    baseConocimiento[filaActual - 1, columnaActual].contenido.Remove("posible wumpus");
+                    baseConocimiento[filaActual - 1, columnaActual].contenido.Remove("posible oro");
+                }
+                if (filaActual + 1 < baseConocimiento.GetLength(0))
+                {
+                    baseConocimiento[filaActual + 1, columnaActual].contenido.Remove("posible hoyo");
+                    baseConocimiento[filaActual + 1, columnaActual].contenido.Remove("posible wumpus");
+                    baseConocimiento[filaActual + 1, columnaActual].contenido.Remove("posible oro");
+                }
+                if (columnaActual - 1 >= 0)
+                {
+                    baseConocimiento[filaActual, columnaActual-1].contenido.Remove("posible hoyo");
+                    baseConocimiento[filaActual, columnaActual-1].contenido.Remove("posible wumpus");
+                    baseConocimiento[filaActual, columnaActual-1].contenido.Remove("posible oro");
+                }
+                if (columnaActual + 1 < baseConocimiento.GetLength(1))
+                {
+                    baseConocimiento[filaActual, columnaActual + 1].contenido.Remove("posible hoyo");
+                    baseConocimiento[filaActual, columnaActual + 1].contenido.Remove("posible wumpus");
+                    baseConocimiento[filaActual, columnaActual + 1].contenido.Remove("posible oro");
+                }
+            }
             //muerto
             if (posicionActual.contenido.Contains("wumpus") || posicionActual.contenido.Contains("hoyo"))
                 return -1;
@@ -50,22 +77,33 @@ namespace Wumpus.Clases
             {
                 baseConocimiento[filaActual, columnaActual].contenido.Add("visitado");
                 if (posicionActual.contenido.Contains("hedor"))
+                {
                     //marca el hedor
                     baseConocimiento[filaActual, columnaActual].contenido.Add("hedor");
-                    if(!wumpusEncontrado)
+                    if (!wumpusEncontrado)
                         //marca posibles casillas donde puede estar el wumpus
                         updateBaseConocimiento(filaActual, columnaActual, "wumpus");
+                }
+
+
 
                 if (posicionActual.contenido.Contains("brisa"))
+                {
                     baseConocimiento[filaActual, columnaActual].contenido.Add("brisa");
                     updateBaseConocimiento(filaActual, columnaActual, "hoyo");
+                }
                 if (posicionActual.contenido.Contains("brillo"))
+                {
                     baseConocimiento[filaActual, columnaActual].contenido.Add("brillo");
                     updateBaseConocimiento(filaActual, columnaActual, "oro");
+                }
                 if (posicionActual.contenido.Contains("vacio"))
                 {
                     if(!baseConocimiento[filaActual, columnaActual].contenido.Contains("ok"))
+                    {
                         baseConocimiento[filaActual, columnaActual].contenido.Add("ok");
+                    }
+                        
                     updateBaseConocimientoOK(filaActual, columnaActual);
                 }
             }
@@ -114,63 +152,120 @@ namespace Wumpus.Clases
         }
         private void updateBaseConocimiento(int filaActual, int columnaActual, string contenido)
         {
-                if (filaActual - 1 >= 0)
+            int posiblesCasillas=0;
+            int posicionFila=-1;
+            int posicionColumna=-1;
+            if (filaActual - 1 >= 0)
+            {
+                if (PeligroNoRecorrido(filaActual - 1, columnaActual))
                 {
-                    if (checkPosiblePeligro(filaActual - 1, columnaActual)) { 
-                        if (checkBaseConocimiento(filaActual - 1, columnaActual, "posible " + contenido))
-                        {
-                            this.baseConocimiento[filaActual - 1, columnaActual].contenido.Remove("posible " + contenido);
-                            this.baseConocimiento[filaActual - 1, columnaActual].contenido.Add(contenido);
-                        }
-                        else
-                            this.baseConocimiento[filaActual - 1, columnaActual].contenido.Add("posible " + contenido);
+                    if (checkPeligro(filaActual-1, columnaActual, contenido))
+                    {
+                        this.baseConocimiento[filaActual - 1, columnaActual].contenido.Add("posible " + contenido);
+                        posiblesCasillas++;
+                        posicionFila = filaActual - 1;
+                        posicionColumna = columnaActual;
                     }
 
-                    
-                        
-                };
-                if (filaActual + 1 < baseConocimiento.GetLength(0))
+                }
+            }
+            if (filaActual + 1 < baseConocimiento.GetLength(0))
+            {
+                if (PeligroNoRecorrido(filaActual + 1, columnaActual))
                 {
-                    if (checkPosiblePeligro(filaActual + 1, columnaActual)) { 
-                        if (checkBaseConocimiento(filaActual + 1, columnaActual, "posible " + contenido))
-                        {
-                            this.baseConocimiento[filaActual + 1, columnaActual].contenido.Remove("posible " + contenido);
-                            this.baseConocimiento[filaActual + 1, columnaActual].contenido.Add(contenido);
-                        }
-                        else
-                            this.baseConocimiento[filaActual + 1, columnaActual].contenido.Add("posible " + contenido);
+                    if (checkPeligro(filaActual+1, columnaActual, contenido))
+                    {
+
+                        this.baseConocimiento[filaActual + 1, columnaActual].contenido.Add("posible " + contenido);
+                        posiblesCasillas++;
+                        posicionFila = filaActual + 1;
+                        posicionColumna = columnaActual;
                     }
-                        
-                };
-                if (columnaActual - 1 >= 0)
+                }
+
+            }
+            if (columnaActual - 1 >= 0)
+            {
+                if (PeligroNoRecorrido(filaActual, columnaActual - 1))
                 {
-                    if (checkPosiblePeligro(filaActual, columnaActual-1)) { 
-                        if (checkBaseConocimiento(filaActual, columnaActual-1, "posible " + contenido))
-                        {
-                            this.baseConocimiento[filaActual, columnaActual-1].contenido.Remove("posible " + contenido);
-                            this.baseConocimiento[filaActual, columnaActual-1].contenido.Add(contenido);
-                        }
-                        else
-                            this.baseConocimiento[filaActual, columnaActual-1].contenido.Add("posible " + contenido);
+                    if (checkPeligro(filaActual, columnaActual-1, contenido))
+                    {
+
+                        this.baseConocimiento[filaActual, columnaActual - 1].contenido.Add("posible " + contenido);
+                        posiblesCasillas++;
+                        posicionFila = filaActual;
+                        posicionColumna = columnaActual-1;
                     }
-                        
-                };
-                if (columnaActual + 1 < baseConocimiento.GetLength(1))
+                }
+
+            }
+            if (columnaActual + 1 < baseConocimiento.GetLength(1))
+            {
+
+                if (PeligroNoRecorrido(filaActual, columnaActual + 1))
                 {
-                    
-                    if (checkPosiblePeligro(filaActual, columnaActual+1)) { 
-                        if (checkBaseConocimiento(filaActual, columnaActual+1, "posible " + contenido))
-                        {
-                            this.baseConocimiento[filaActual, columnaActual+1].contenido.Remove("posible " + contenido);
-                            this.baseConocimiento[filaActual, columnaActual+1].contenido.Add(contenido);
-                        }
-                        else
-                            this.baseConocimiento[filaActual, columnaActual+1].contenido.Add("posible " + contenido);
+                    if (checkPeligro(filaActual, columnaActual + 1, contenido))
+                    {
+                        this.baseConocimiento[filaActual, columnaActual + 1].contenido.Add("posible " + contenido);
+                        posiblesCasillas++;
+                        posicionFila = filaActual;
+                        posicionColumna = columnaActual+1;
                     }
-                };
+                }
+            }
+            if (posiblesCasillas == 1&&posicionFila!=-1&&posicionColumna!=-1)
+            {
+                this.baseConocimiento[posicionFila, posicionColumna].contenido.Remove("posible "+contenido);
+                this.baseConocimiento[posicionFila, posicionColumna].contenido.Add(contenido);
+            }
             
         }
-        private bool checkPosiblePeligro(int i, int j)
+
+        private bool checkPeligro(int filaActual, int columnaActual, string contenido)
+        {
+            string buscarPor="";
+            switch (contenido)
+            {
+                case "wumpus":
+                    buscarPor = "hedor";
+                    break;
+                case "hoyo":
+                    buscarPor = "brisa";
+                    break;
+                case "oro":
+                    buscarPor = "brillo";
+                    break;
+
+            }
+
+            if (filaActual - 1 >= 0)
+            {
+                if (!baseConocimiento[filaActual-1, columnaActual].contenido.Contains(buscarPor)&& baseConocimiento[filaActual-1, columnaActual].contenido.Contains("visitado"))
+                    return false;
+
+
+            };
+            if (filaActual + 1 < baseConocimiento.GetLength(0))
+            {
+                if (!baseConocimiento[filaActual+1, columnaActual].contenido.Contains(buscarPor) && baseConocimiento[filaActual+1, columnaActual].contenido.Contains("visitado"))
+                    return false;
+
+            };
+            if (columnaActual - 1 >= 0)
+            {
+                if (!baseConocimiento[filaActual, columnaActual-1].contenido.Contains(buscarPor) && baseConocimiento[filaActual, columnaActual-1].contenido.Contains("visitado"))
+                    return false;
+
+            };
+            if (columnaActual + 1 < baseConocimiento.GetLength(1))
+            {
+                if (!baseConocimiento[filaActual, columnaActual+1].contenido.Contains(buscarPor) && baseConocimiento[filaActual, columnaActual+1].contenido.Contains("visitado"))
+                    return false;
+            };
+            return true;
+        }
+
+        private bool PeligroNoRecorrido(int i, int j)
         {
             if (checkBaseConocimiento(i, j, "visitado") || checkBaseConocimiento(i, j, "ok"))
                 return false;

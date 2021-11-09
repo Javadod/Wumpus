@@ -15,7 +15,10 @@ namespace Wumpus.Clases
             this.tamano = tamano;
             this.mapa = new Casilla[tamano, tamano];
             random = new Random();
-            setStart();
+            //setStart();
+            //setStart2();
+            setStart3();
+            //setStart4();
         }
         private void setCasillas()
         {
@@ -32,6 +35,33 @@ namespace Wumpus.Clases
             setGold();
             setEmpty();
         }
+        private void setStart2()
+        {
+            setCasillas();
+
+            setHoyo2();
+            setWumpus2();
+            setGold2();
+            setEmpty();
+        }
+        private void setStart3()
+        {
+            setCasillas();
+            setHoyo3();
+            setWumpus3();
+            setGold3();
+            setEmpty();
+        }
+        private void setStart4()
+        {
+
+            setCasillas();
+            setHoyo4();
+            setWumpus4();
+            setGold4();
+            setEmpty();
+        }
+
         private void setEmpty() {
             for (int i = 0; i < tamano; i++)
                 for (int j = 0; j < tamano; j++) 
@@ -40,6 +70,7 @@ namespace Wumpus.Clases
                 
         }
         private void setHoles () {
+            
             for (int i = 0; i < tamano; i++)
                 for (int j = 0; j < tamano; j++)
                     if(random.Next(0,100) < 20)
@@ -51,6 +82,7 @@ namespace Wumpus.Clases
                         }
                         
                     }
+            
         }
 
         private void crearBrisas(int i, int j)
@@ -89,8 +121,8 @@ namespace Wumpus.Clases
                 fila = random.Next(tamano);
                 columna = random.Next(tamano);
             }
-            mapa[fila, columna].contenido.Add("wumpus");
-            crearHedor(fila,columna);
+            mapa[1, 2].contenido.Add("wumpus");
+            crearHedor(1,2);
         }
         private void crearHedor (int i, int j) {
             ponerEnMapa(i, j, "hedor");
@@ -103,13 +135,75 @@ namespace Wumpus.Clases
                 fila = random.Next(tamano);
                 columna = random.Next(tamano);
             }
-            mapa[fila, columna].contenido.Add("oro");
-            crearBrillo(fila,columna);
+            mapa[2, 2].contenido.Add("oro");
+            crearBrillo(2,2);
+        }
+        private void setGold2()
+        {
+            mapa[2, 2].contenido.Add("oro");
+            crearBrillo(2, 2);
+        }
+        private void setWumpus2()
+        {
+            mapa[2, 1].contenido.Add("wumpus");
+            crearHedor(2, 1);
+        }
+        private void setHoyo2()
+        {
+            mapa[2, 0].contenido.Add("hoyo");
+            crearBrisas(2, 0);
+            mapa[3, 1].contenido.Add("hoyo");
+            crearBrisas(3, 1);
+            mapa[2, 3].contenido.Add("hoyo");
+            crearBrisas(2, 3);
         }
 
         private void crearBrillo(int i, int j)
         {
             ponerEnMapa(i, j, "brillo");
         }
+        
+        private void setGold3()
+        {
+            mapa[2, 0].contenido.Add("oro");
+            crearBrillo(2, 0);
+        }
+        private void setWumpus3()
+        {
+            mapa[2, 0].contenido.Add("wumpus");
+            crearHedor(2, 0);
+        }
+        private void setHoyo3()
+        {
+            mapa[0, 2].contenido.Add("hoyo");
+            crearBrisas(0, 2);
+            mapa[1, 1].contenido.Add("hoyo");
+            crearBrisas(1, 1);
+            mapa[1, 2].contenido.Add("hoyo");
+            crearBrisas(1, 2);
+        }
+        private void setGold4()
+        {
+            mapa[3, 3].contenido.Add("oro");
+            crearBrillo(3, 3);
+        }
+        private void setWumpus4()
+        {
+            mapa[2, 2].contenido.Add("wumpus");
+            crearHedor(2, 2);
+        }
+        private void setHoyo4()
+        {
+            mapa[1, 1].contenido.Add("hoyo");
+            crearBrisas(1, 1);
+            mapa[3, 0].contenido.Add("hoyo");
+            crearBrisas(3, 0);
+            mapa[0, 3].contenido.Add("hoyo");
+            crearBrisas(0, 3);
+        }
+
+
+
+
     }
 }

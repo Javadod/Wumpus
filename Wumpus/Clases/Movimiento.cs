@@ -22,6 +22,11 @@ namespace Wumpus.Clases
         
         public Movimiento mejorMovimiento()
         {
+            //no quedan casillas por explorar o son peligrosas
+            if (!checkMovimientos(jugador.baseConocimiento))
+            {
+                return null;
+            }
             int filaActual = jugador.posicionActual.fila;
             int columnaActual = jugador.posicionActual.columna;
             List<Casilla> adyacentesList = new List<Casilla>();
@@ -57,6 +62,21 @@ namespace Wumpus.Clases
 
         }
 
+        private bool checkMovimientos(Casilla[,] baseConocimiento)
+        {
+            for (int i = 0; i < baseConocimiento.GetLength(0); i++)
+            {
+                for (int j = 0; j < baseConocimiento.GetLength(1); j++)
+                {
+                    if (baseConocimiento[i, j].contenido.Contains("ok") && !baseConocimiento[i, j].contenido.Contains("visitado"))
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
         private Casilla checkValoresHeuristica(Casilla[] adyacentes)
         {
             int puntaje;
@@ -79,7 +99,7 @@ namespace Wumpus.Clases
                 }
                 if (adyacentes[i].contenido.Contains("ok")&&!adyacentes[i].contenido.Contains("visitado"))
                 {
-                    puntaje += 0;
+                    puntaje += 1;
                 }
                 if (puntaje > mejorPuntaje)
                 {

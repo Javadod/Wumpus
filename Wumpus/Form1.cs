@@ -190,6 +190,7 @@ namespace Wumpus
                 {
                     pictureB.Image = Properties.Resources.brillo_brisa_hedor;
                 }
+                //caso hoyo-hedor-brillo
 
             }
             else if (mapa.contenido.Count() == 4)
@@ -230,18 +231,25 @@ namespace Wumpus
             pictureB[filaActual, columnaActual].Refresh();
 
             Movimiento mejorMovimiento = movimientos.last().mejorMovimiento();
-            if (mejorMovimiento == null)
+            if (mejorMovimiento == null && movimientos.last() == movimientos.movimientoInicial)
+            {
+                MessageBox.Show("Te has ido a casa con las manos vacias");
+            }
+            else if (mejorMovimiento == null)
+            {
                 movimientos.retrocede();
+            }
             else
                 movimientos.nuevoMovimiento(mejorMovimiento);
             int estado=jugador.estadoActual();
             if (estado == -1)
             {
-                //murio
+                MessageBox.Show("Has muerto :(");
             }
             else if(estado == 1)
             {
-                //gano
+                MessageBox.Show("Has ganado :)");
+                
             }
             moverJugador(jugador.posicionActual);
         }
