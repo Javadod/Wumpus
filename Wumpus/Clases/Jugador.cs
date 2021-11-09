@@ -12,7 +12,7 @@ namespace Wumpus.Clases
         public Sentidos sentidos { get; set; }
         public Casilla posicionActual { get; set; }
         public Casilla[,] baseConocimiento { get; set; }
-        public string wumpusEncontrado{ get; set; }
+        public bool wumpusEncontrado{ get; set; }
         public Jugador (Casilla posicionActual, int tamTablero) {
             this.flecha = true;
             this.puntaje = 0;
@@ -74,7 +74,7 @@ namespace Wumpus.Clases
                 wumpusEncontrado = checkWumpus();
             }
             
-            return true;
+            return 0;
 
         }
 
@@ -170,12 +170,12 @@ namespace Wumpus.Clases
                 };
             
         }
-        private bool checkPosiblePeligro(int i, int j, string contenido)
+        private bool checkPosiblePeligro(int i, int j)
         {
-            if(checkBaseConocimiento(i,j,"visitado")||checkBaseConocimiento(i,j,"ok"))
-                return false
+            if (checkBaseConocimiento(i, j, "visitado") || checkBaseConocimiento(i, j, "ok"))
+                return false;
             else
-                return true
+                return true;
          
         }
         private bool checkWumpus()
@@ -184,11 +184,11 @@ namespace Wumpus.Clases
             {
                 for(int j=0; j< baseConocimiento.GetLength(1); j++)
                 {
-                    if(baseConocimiento[i,j].contenido.Contains("wumpus"))
-                        return true
+                    if (baseConocimiento[i, j].contenido.Contains("wumpus"))
+                        return true;
                 }
             }
-                return false
+            return false;
         }
     }
 }
