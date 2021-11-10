@@ -262,7 +262,8 @@ namespace Wumpus
                 {
                     movimientos.retrocede();
                     MessageBox.Show("Decides irte a casa con las manos vacias");
-
+                    this.Controls.Clear();
+                    this.InitializeComponent();
                 }
                 movimientos.retrocede();
 
@@ -273,11 +274,16 @@ namespace Wumpus
             if (estado == -1)
             {
                 MessageBox.Show("Has muerto :(");
+                this.Controls.Clear();
+                this.InitializeComponent();
+
             }
             else if(estado == 1)
             {
                 MessageBox.Show("Has ganado :)");
-                
+                this.Controls.Clear();
+                this.InitializeComponent();
+
             }
             moverJugador(jugador.posicionActual);
             if (jugador.sentidos.hedor)
