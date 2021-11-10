@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using Wumpus.Clases;
 
 namespace Wumpus
 {
@@ -263,6 +264,9 @@ namespace Wumpus
                     MessageBox.Show("Decides irte a casa con las manos vacias");
                     this.Controls.Clear();
                     this.InitializeComponent();
+                    resetBtn.Enabled = false;
+                    MoverBtn.Enabled = false;
+
                 }
                 movimientos.retrocede();
 
@@ -275,6 +279,8 @@ namespace Wumpus
                 MessageBox.Show("Has muerto :(");
                 this.Controls.Clear();
                 this.InitializeComponent();
+                resetBtn.Enabled = false;
+                MoverBtn.Enabled = false;
 
             }
             else if(estado == 1)
@@ -282,6 +288,8 @@ namespace Wumpus
                 MessageBox.Show("Has ganado :)");
                 this.Controls.Clear();
                 this.InitializeComponent();
+                resetBtn.Enabled = false;
+                MoverBtn.Enabled = false;
 
             }
             moverJugador(jugador.posicionActual);
