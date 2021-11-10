@@ -16,19 +16,36 @@ namespace Wumpus
         Tablero mazmorra;
         Jugador jugador;
         Recorrido movimientos;
+        int mapaType;
         private void Form1_Load(object sender, EventArgs e)
         {
-            crearMapa();
-            Casilla[,] mapa = mazmorra.mapa;
-            jugador = new Jugador(mapa[0, 0], 4);
-            movimientos  = new Recorrido(jugador, mazmorra);
+            resetBtn.Enabled = false;
+            MoverBtn.Enabled = false;
+            //crearMapa();
+            //Casilla[,] mapa = mazmorra.mapa;
+            //jugador = new Jugador(mapa[0, 0], 4);
+            //movimientos  = new Recorrido(jugador, mazmorra);
             
 
         }
 
-        public void crearMapa()
+        public void crearMapa(int mapaType)
         {
+
             mazmorra = new Tablero(4);
+            switch (mapaType)
+            {
+                case 1:
+                    mazmorra.setStart2();
+                    break;
+                case 2:
+                    mazmorra.setStart3();
+                    break;
+                case 3:
+                    mazmorra.setStart4();
+                    break;
+            }
+            
             Casilla[,] mapa = mazmorra.mapa;
             pictureB = new PictureBox[4, 4];
             int width = 5, height = 320;
@@ -218,26 +235,37 @@ namespace Wumpus
         {
             this.Controls.Clear();
             this.InitializeComponent();
-            crearMapa();
+            crearMapa(mapaType);
             jugador = new Jugador(mazmorra.mapa[0, 0], 4);
             movimientos = new Recorrido(jugador, mazmorra);
         }
 
         private void MoverBtn_Click(object sender, EventArgs e)
         {
+            hedorTB.Text = "Nada";
+            brilloTB.Text = "Nada";
+            brisaTB.Text = "Nada";
             int filaActual = jugador.posicionActual.fila;
             int columnaActual = jugador.posicionActual.columna;
             addImagePictureBox(pictureB[filaActual, columnaActual], mazmorra.mapa[filaActual, columnaActual]);
             pictureB[filaActual, columnaActual].Refresh();
 
             Movimiento mejorMovimiento = movimientos.last().mejorMovimiento();
-            if (mejorMovimiento == null && movimientos.last() == movimientos.movimientoInicial)
+            if (jugador.sentidos.grito)
             {
-                MessageBox.Show("Te has ido a casa con las manos vacias");
+                MessageBox.Show("GRAAAAAAAAHHHHHHH\n has matado al wumpus!");
             }
-            else if (mejorMovimiento == null)
+            if (mejorMovimiento == null)
             {
+                //no quedan casillas por explorar o son peligrosas
+                if (!movimientos.last().checkMovimientos(jugador.baseConocimiento))
+                {
+                    movimientos.retrocede();
+                    MessageBox.Show("Decides irte a casa con las manos vacias");
+
+                }
                 movimientos.retrocede();
+
             }
             else
                 movimientos.nuevoMovimiento(mejorMovimiento);
@@ -252,6 +280,21 @@ namespace Wumpus
                 
             }
             moverJugador(jugador.posicionActual);
+            if (jugador.sentidos.hedor)
+            {
+                hedorTB.Text = "Sí";
+            }
+            else
+
+            if (jugador.sentidos.brisa)
+                brisaTB.Text = "Sí";
+            if (jugador.sentidos.brillo)
+                brilloTB.Text = "Sí";
+            if (jugador.sentidos.grito)
+                gritoTB.Text = "Sí";
+            if (!jugador.flecha)
+                flechaTB.Text = "No";
+
         }
 
         private void moverJugador(Casilla posicion)
@@ -261,6 +304,46 @@ namespace Wumpus
 
             pictureB[fila, columna].Image = Properties.Resources._5680d58ebafdf15;
             pictureB[fila, columna].Refresh();
+        }
+
+        private void Map1Btn_Click(object sender, EventArgs e)
+        {
+            this.Controls.Clear();
+            this.InitializeComponent();
+
+            resetBtn.Enabled = true;
+            MoverBtn.Enabled = true;
+            mapaType = 1;
+            crearMapa(1);
+            
+            jugador = new Jugador(mazmorra.mapa[0, 0], 4);
+            movimientos = new Recorrido(jugador, mazmorra);
+        }
+
+        private void Map2Btn_Click(object sender, EventArgs e)
+        {
+
+            this.Controls.Clear();
+            this.InitializeComponent();
+            resetBtn.Enabled = true;
+            MoverBtn.Enabled = true;
+            mapaType = 2;
+            crearMapa(mapaType);
+            jugador = new Jugador(mazmorra.mapa[0, 0], 4);
+            movimientos = new Recorrido(jugador, mazmorra);
+        }
+
+        private void Map3Btn_Click(object sender, EventArgs e)
+        {
+
+            this.Controls.Clear();
+            this.InitializeComponent();
+            resetBtn.Enabled = true;
+            MoverBtn.Enabled = true;
+            mapaType = 3;
+            crearMapa(mapaType);
+            jugador = new Jugador(mazmorra.mapa[0, 0], 4);
+            movimientos = new Recorrido(jugador, mazmorra);
         }
     }
 }

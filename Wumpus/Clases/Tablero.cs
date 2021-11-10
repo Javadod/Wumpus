@@ -17,7 +17,7 @@ namespace Wumpus.Clases
             random = new Random();
             //setStart();
             //setStart2();
-            setStart3();
+            //setStart3();
             //setStart4();
         }
         private void setCasillas()
@@ -35,7 +35,7 @@ namespace Wumpus.Clases
             setGold();
             setEmpty();
         }
-        private void setStart2()
+        public void setStart2()
         {
             setCasillas();
 
@@ -44,7 +44,7 @@ namespace Wumpus.Clases
             setGold2();
             setEmpty();
         }
-        private void setStart3()
+        public void setStart3()
         {
             setCasillas();
             setHoyo3();
@@ -52,7 +52,7 @@ namespace Wumpus.Clases
             setGold3();
             setEmpty();
         }
-        private void setStart4()
+        public void setStart4()
         {
 
             setCasillas();
@@ -175,12 +175,12 @@ namespace Wumpus.Clases
         }
         private void setHoyo3()
         {
-            mapa[0, 2].contenido.Add("hoyo");
-            crearBrisas(0, 2);
-            mapa[1, 1].contenido.Add("hoyo");
-            crearBrisas(1, 1);
+            mapa[0, 3].contenido.Add("hoyo");
+            crearBrisas(0, 3);
             mapa[1, 2].contenido.Add("hoyo");
             crearBrisas(1, 2);
+            mapa[1, 3].contenido.Add("hoyo");
+            crearBrisas(1, 3);
         }
         private void setGold4()
         {

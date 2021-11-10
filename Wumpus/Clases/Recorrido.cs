@@ -26,12 +26,9 @@ namespace Wumpus.Clases
         }
         public void nuevoMovimiento(Movimiento movimiento)
         {
-           Movimiento actual = movimientoInicial;
-           while (actual.movimientoSiguiente != null)
-           {
-                actual = actual.movimientoSiguiente;
-           }
-            Movimiento nuevoMovimiento = movimiento;
+            Movimiento actual = last();
+           
+            Movimiento nuevoMovimiento = new Movimiento(movimiento.jugador,movimiento.tablero);
             nuevoMovimiento.movimientoSiguiente = null;
             actual.movimientoSiguiente = nuevoMovimiento;
          
@@ -46,10 +43,11 @@ namespace Wumpus.Clases
                 anterior = actual;
                 actual = actual.movimientoSiguiente;
             }
-            
-            Casilla ultimaPosicion = new Casilla(actual.posicionActual.fila,actual.posicionActual.columna);
-            actual.jugador.posicionActual = ultimaPosicion;
-            anterior.posicionActual = ultimaPosicion;
+
+            //Casilla ultimaPosicion = new Casilla(actual.posicionActual.fila,actual.posicionActual.columna);
+            //actual.jugador.posicionActual = ultimaPosicion;
+            actual.jugador.posicionActual = anterior.posicionActual;
+            //anterior.posicionActual = ultimaPosicion;
             anterior.movimientoSiguiente = null;
             
         }

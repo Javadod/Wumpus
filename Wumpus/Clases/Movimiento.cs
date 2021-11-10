@@ -18,15 +18,12 @@ namespace Wumpus.Clases
             this.jugador = jugador;
             this.tablero = tablero;
             this.posicionActual = new Casilla(jugador.posicionActual.fila, jugador.posicionActual.columna);
+            this.posicionActual.contenido = jugador.posicionActual.contenido;
         }
         
         public Movimiento mejorMovimiento()
         {
-            //no quedan casillas por explorar o son peligrosas
-            if (!checkMovimientos(jugador.baseConocimiento))
-            {
-                return null;
-            }
+            
             int filaActual = jugador.posicionActual.fila;
             int columnaActual = jugador.posicionActual.columna;
             List<Casilla> adyacentesList = new List<Casilla>();
@@ -62,7 +59,7 @@ namespace Wumpus.Clases
 
         }
 
-        private bool checkMovimientos(Casilla[,] baseConocimiento)
+        public bool checkMovimientos(Casilla[,] baseConocimiento)
         {
             for (int i = 0; i < baseConocimiento.GetLength(0); i++)
             {
@@ -84,7 +81,7 @@ namespace Wumpus.Clases
             Casilla mejorCasilla= null;
             for (int i = 0; i < adyacentes.Length; i++)
             {
-                puntaje = 0;
+                puntaje = -1;
                 if (adyacentes[i].contenido.Contains("wumpus") || adyacentes[i].contenido.Contains("posible wumpus"))
                 {
                     puntaje += -1000;
@@ -95,11 +92,20 @@ namespace Wumpus.Clases
                 }
                 if (adyacentes[i].contenido.Contains("oro") || adyacentes[i].contenido.Contains("posible oro"))
                 {
-                    puntaje += +1000;
+                    puntaje += +1002;
                 }
                 if (adyacentes[i].contenido.Contains("ok")&&!adyacentes[i].contenido.Contains("visitado"))
                 {
                     puntaje += 1;
+                }
+                if (puntaje == 1)
+                {
+                    if(adyacentes[i].contenido.Contains("wumpus")&& adyacentes[i].contenido.Contains("oro")&& !adyacentes[i].contenido.Contains("posible wumpus")&& !adyacentes[i].contenido.Contains("posible oro"))
+                    {
+                        jugador.flecha = false;
+                        jugador.sentidos.grito = true;
+                        
+                    }
                 }
                 if (puntaje > mejorPuntaje)
                 {

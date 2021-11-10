@@ -40,6 +40,9 @@ namespace Wumpus.Clases
             int columnaActual = posicionActual.columna;
             if (posicionActual.contenido.Contains("vacio"))
             {
+                sentidos.hedor = false;
+                sentidos.brisa = false;
+                sentidos.brillo = false;
                 if (filaActual - 1 >= 0)
                 {
                     baseConocimiento[filaActual - 1, columnaActual].contenido.Remove("posible hoyo");
@@ -66,7 +69,7 @@ namespace Wumpus.Clases
                 }
             }
             //muerto
-            if (posicionActual.contenido.Contains("wumpus") || posicionActual.contenido.Contains("hoyo"))
+            if ((posicionActual.contenido.Contains("wumpus") || posicionActual.contenido.Contains("hoyo"))&&!sentidos.grito)
                 return -1;
             //encontro el oro
             if(posicionActual.contenido.Contains("oro"))
@@ -78,6 +81,7 @@ namespace Wumpus.Clases
                 baseConocimiento[filaActual, columnaActual].contenido.Add("visitado");
                 if (posicionActual.contenido.Contains("hedor"))
                 {
+                    sentidos.hedor = true;
                     //marca el hedor
                     baseConocimiento[filaActual, columnaActual].contenido.Add("hedor");
                     if (!wumpusEncontrado)
@@ -89,11 +93,13 @@ namespace Wumpus.Clases
 
                 if (posicionActual.contenido.Contains("brisa"))
                 {
+                    sentidos.brisa = true;
                     baseConocimiento[filaActual, columnaActual].contenido.Add("brisa");
                     updateBaseConocimiento(filaActual, columnaActual, "hoyo");
                 }
                 if (posicionActual.contenido.Contains("brillo"))
                 {
+                    sentidos.brillo = true;
                     baseConocimiento[filaActual, columnaActual].contenido.Add("brillo");
                     updateBaseConocimiento(filaActual, columnaActual, "oro");
                 }
